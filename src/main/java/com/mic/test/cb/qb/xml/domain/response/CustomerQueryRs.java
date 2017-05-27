@@ -19,7 +19,7 @@ import java.util.List;
  */
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CustomerQueryRs extends QBXMLBusiMsg {
+public class CustomerQueryRs extends QBXMLBusiMsgRs {
 
     @XmlElementWrapper
     private List<CustomerRet> customerRetList;
@@ -77,10 +77,10 @@ public class CustomerQueryRs extends QBXMLBusiMsg {
     }
 
     public static void main(String[] args) {
-        RsQBXML<QBXMLMsgRs> qbxml = new RsQBXML();
+        AbstractQBXML qbxml = new RsQBXML();
 
-        QBXMLMsg<CustomerQueryRs> qbxmlMsg = new QBXMLMsgRs();
-        qbxml.setQbxmlMsg(qbxmlMsg);
+        QBXMLMsgRs<CustomerQueryRs> qbxmlMsgRs = new QBXMLMsgRs<>();
+
 
         CustomerQueryRs customerQueryRs = new CustomerQueryRs();
         customerQueryRs.setRequestId("1");
@@ -97,7 +97,9 @@ public class CustomerQueryRs extends QBXMLBusiMsg {
         customerRetList.add(customerRet);
         customerRetList.add(customerRet2);
         customerQueryRs.setCustomerRetList(customerRetList);
-        qbxmlMsg.setQbBusiMsg(customerQueryRs);
+        qbxmlMsgRs.setQbBusiMsg(customerQueryRs);
+        qbxml.setQbXMLMsg(qbxmlMsgRs);
+
         String resultXml = null;
         try {
             JAXBContext context = JAXBContext.newInstance(qbxml.getClass());

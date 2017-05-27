@@ -1,5 +1,7 @@
 package com.mic.test.cb.qb.xml.domain;
 
+import com.mic.test.cb.qb.xml.domain.response.QBXMLMsgRs;
+
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,9 +14,9 @@ import javax.xml.bind.annotation.*;
 public abstract class AbstractQBXML<T extends QBXMLMsg> {
 
     @XmlElement
-    protected T qbxmlMsg;
+    protected T qbXMLMsg;
 
-    public abstract T getQbxmlMsg();
+    public abstract T getQbXMLMsg();
 
-    public abstract void setQbxmlMsg(T qbxmlMsg);
+    public abstract void setQbXMLMsg(T qbXMLMsg);
 }

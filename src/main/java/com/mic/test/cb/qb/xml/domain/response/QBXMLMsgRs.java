@@ -12,7 +12,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class QBXMLMsgRs<T extends QBXMLBusiMsgRs> extends QBXMLMsg<T> {
+public class QBXMLMsgRs<B extends QBXMLBusiMsgRs> extends QBXMLMsg {
 
+    private B qbXMLBusiMsgRs;
 
+    public B getQbXMLBusiMsgRs() {
+        return qbXMLBusiMsgRs;
+    }
+
+    public void setQbXMLBusiMsgRs(B qbXMLBusiMsgRs) {
+        this.qbXMLBusiMsgRs = qbXMLBusiMsgRs;
+    }
 }

@@ -1,5 +1,6 @@
 package com.mic.test.cb.qb.xml.domain;
 
+import com.mic.test.cb.qb.xml.domain.request.QBXMLMsgRq;
 import com.mic.test.cb.qb.xml.domain.response.QBXMLMsgRs;
 
 import javax.xml.bind.annotation.*;
@@ -10,19 +11,16 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "QBXML")
 @XmlType
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class RsQBXML<QBXMLMsgRs> extends AbstractQBXML<T>{
+public class RsQBXML extends AbstractQBXML<QBXMLMsgRs>{
 
-    @XmlElement(name = "QBXMLMsgsRs")
+    @XmlElement(name = "QBXMLMsgRs")
     @Override
-    public QBXMLMsgRs getQbxmlMsg() {
-        return super.qbxmlMsg;
+    public QBXMLMsgRs getQbXMLMsg() {
+        return qbXMLMsg;
     }
 
-
     @Override
-    public void setQbxmlMsg(QBXMLMsgRs qbxmlMsg) {
-        super.qbxmlMsg = qbxmlMsg;
+    public void setQbXMLMsg(QBXMLMsgRs qbXMLMsg) {
+
     }
-
-
 }
