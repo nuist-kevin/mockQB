@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mockQB:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="mockQB.war">
+      <element id="artifact" artifact-name="mockQB:war exploded" />
+    </root>
+  </artifact>
+</component>
