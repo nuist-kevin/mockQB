@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "sendRequestXML")
-@XmlType
 public class SendRequestXMLRequest {
     @XmlElement
     private String ticket;

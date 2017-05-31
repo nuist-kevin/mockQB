@@ -39,7 +39,7 @@ public class WebServiceClientTest {
         sendRequestXMLRequest.setQbXMLCountry("US");
         sendRequestXMLRequest.setQbXMLMajorVers("6");
         sendRequestXMLRequest.setQbXMLMinorVers("6");
-        webServiceTemplate.marshalSendAndReceive("http://localhost:8080/services/qbwcServer?wsdl",sendRequestXMLRequest);
-
+        webServiceTemplate.marshalSendAndReceive("http://localhost:8080/services/qbwcServer?wsdl",
+                sendRequestXMLRequest);
     }
 }
