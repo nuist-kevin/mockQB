@@ -22,7 +22,6 @@ public class WebServiceClientTest {
     @Autowired
     WebServiceClient webServiceClient;
 
-
     @Autowired
     WebServiceTemplate webServiceTemplate;
 

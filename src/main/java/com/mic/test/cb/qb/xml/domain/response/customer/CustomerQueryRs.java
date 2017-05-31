@@ -1,15 +1,15 @@
-package com.mic.test.cb.qb.xml.domain.response;
+package com.mic.test.cb.qb.xml.domain.response.customer;
 
-import com.mic.test.cb.qb.ws.domain.AuthicateResponse;
-import com.mic.test.cb.qb.xml.domain.AbstractQBXML;
-import com.mic.test.cb.qb.xml.domain.QBXMLBusiMsg;
+import com.mic.test.cb.qb.xml.domain.QBXML;
 import com.mic.test.cb.qb.xml.domain.QBXMLMsg;
-import com.mic.test.cb.qb.xml.domain.RsQBXML;
-import com.mic.test.cb.qb.xml.domain.business.CustomerRet;
+import com.mic.test.cb.qb.xml.domain.QueryMsg;
+import com.mic.test.cb.qb.xml.domain.response.QBXMLMsgRs;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.*;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,24 +17,12 @@ import java.util.List;
 /**
  * Created by caiwen on 2017/5/27.
  */
-@XmlType
+@XmlRootElement(name = "CustomerQueryRs")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CustomerQueryRs extends QBXMLBusiMsgRs {
+public class CustomerQueryRs extends QueryMsg {
 
-    @XmlElementWrapper
+    @XmlElement(name = "CustomerRet")
     private List<CustomerRet> customerRetList;
-
-    @XmlAttribute
-    private String requestId;
-
-    @XmlAttribute
-    private String statusCode;
-
-    @XmlAttribute
-    private String statusSeverity;
-
-    @XmlAttribute
-    private String statusMessage;
 
     public List<CustomerRet> getCustomerRetList() {
         return customerRetList;
@@ -44,47 +32,17 @@ public class CustomerQueryRs extends QBXMLBusiMsgRs {
         this.customerRetList = customerRetList;
     }
 
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    public String getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public String getStatusSeverity() {
-        return statusSeverity;
-    }
-
-    public void setStatusSeverity(String statusSeverity) {
-        this.statusSeverity = statusSeverity;
-    }
-
-    public String getStatusMessage() {
-        return statusMessage;
-    }
-
-    public void setStatusMessage(String statusMessage) {
-        this.statusMessage = statusMessage;
-    }
 
     public static void main(String[] args) {
-        AbstractQBXML qbxml = new RsQBXML();
+        QBXML qbxml = new QBXML();
 
-        QBXMLMsgRs<CustomerQueryRs> qbxmlMsgRs = new QBXMLMsgRs<>();
+        QBXMLMsg qbxmlMsg = new QBXMLMsgRs();
 
+        qbxmlMsg.setOnError(QBXMLMsg.OnError.StopOnError);
 
         CustomerQueryRs customerQueryRs = new CustomerQueryRs();
-        customerQueryRs.setRequestId("1");
-        customerQueryRs.setStatusCode("2");
+        customerQueryRs.setRequestID("2938-2349023094");
+        customerQueryRs.setStatusCode(2);
         customerQueryRs.setStatusMessage("3");
         customerQueryRs.setStatusSeverity("4");
         CustomerRet customerRet = new CustomerRet();
@@ -97,12 +55,13 @@ public class CustomerQueryRs extends QBXMLBusiMsgRs {
         customerRetList.add(customerRet);
         customerRetList.add(customerRet2);
         customerQueryRs.setCustomerRetList(customerRetList);
-        qbxmlMsgRs.setQbBusiMsg(customerQueryRs);
-        qbxml.setQbXMLMsg(qbxmlMsgRs);
+        qbxmlMsg.setQbXMLBusiMsg(customerQueryRs);
+        qbxml.setQbxmlMsg(qbxmlMsg);
 
         String resultXml = null;
         try {
             JAXBContext context = JAXBContext.newInstance(qbxml.getClass());
+
             Marshaller marshaller = context.createMarshaller();
             //决定是否在转换成xml时同时进行格式化（即按标签自动换行，否则即是一行的xml）
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -112,6 +71,25 @@ public class CustomerQueryRs extends QBXMLBusiMsgRs {
             marshaller.marshal(qbxml, writer);
             resultXml = writer.toString();
             System.out.println(resultXml);
+
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            QBXML qbxml1 = (QBXML) unmarshaller.unmarshal(new StringReader("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n" +
+                    "<QBXML>\n" +
+                    "    <QBXMLMsgRs onError=\"stopOnError\">\n" +
+                    "        <CustomerQueryRs statusCode=\"2\" statusSeverity=\"4\" statusMessage=\"3\">\n" +
+                    "            <CustomerRet>\n" +
+                    "                <listId>111</listId>\n" +
+                    "                <fullName>caiwen</fullName>\n" +
+                    "            </CustomerRet>\n" +
+                    "            <CustomerRet>\n" +
+                    "                <listId>222</listId>\n" +
+                    "                <fullName>caiwen2</fullName>\n" +
+                    "            </CustomerRet>\n" +
+                    "        </CustomerQueryRs>\n" +
+                    "    </QBXMLMsgRs>\n" +
+                    "</QBXML>"));
+
+            System.out.println(qbxml1);
         } catch (Exception e) {
             e.printStackTrace();
         }

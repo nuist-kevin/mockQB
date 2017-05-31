@@ -1,14 +1,11 @@
-package com.mic.test.cb.qb.xml.domain.business;
+package com.mic.test.cb.qb.xml.domain.response.customer;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 /**
  * Created by caiwen on 2017/5/27.
  */
-@XmlType
+@XmlRootElement(name = "CustomerRet")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CustomerRet {
 
