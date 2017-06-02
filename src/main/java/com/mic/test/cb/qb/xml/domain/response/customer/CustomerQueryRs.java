@@ -1,9 +1,10 @@
 package com.mic.test.cb.qb.xml.domain.response.customer;
 
 import com.mic.test.cb.qb.xml.domain.QBXML;
-import com.mic.test.cb.qb.xml.domain.QBXMLMsg;
+import com.mic.test.cb.qb.xml.domain.QBXMLMsgs;
 import com.mic.test.cb.qb.xml.domain.QueryMsg;
-import com.mic.test.cb.qb.xml.domain.response.QBXMLMsgRs;
+import com.mic.test.cb.qb.xml.domain.request.custom.CustomerQueryRq;
+import com.mic.test.cb.qb.xml.domain.response.QBXMLMsgsRs;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -34,11 +35,11 @@ public class CustomerQueryRs extends QueryMsg {
 
 
     public static void main(String[] args) {
-        QBXML qbxml = new QBXML();
+       /* QBXML qbxml = new QBXML();
 
-        QBXMLMsg qbxmlMsg = new QBXMLMsgRs();
+        QBXMLMsgs qbxmlMsgs = new QBXMLMsgsRs();
 
-        qbxmlMsg.setOnError(QBXMLMsg.OnError.StopOnError);
+        qbxmlMsgs.setOnError(QBXMLMsgs.OnError.StopOnError);
 
         CustomerQueryRs customerQueryRs = new CustomerQueryRs();
         customerQueryRs.setRequestID("2938-2349023094");
@@ -55,8 +56,8 @@ public class CustomerQueryRs extends QueryMsg {
         customerRetList.add(customerRet);
         customerRetList.add(customerRet2);
         customerQueryRs.setCustomerRetList(customerRetList);
-        qbxmlMsg.setQbXMLBusiMsg(customerQueryRs);
-        qbxml.setQbxmlMsg(qbxmlMsg);
+        qbxmlMsgs.setQbXMLBusiMsg(customerQueryRs);
+        qbxml.setQbxmlMsg(qbxmlMsgs);
 
         String resultXml = null;
         try {
@@ -73,25 +74,21 @@ public class CustomerQueryRs extends QueryMsg {
             System.out.println(resultXml);
 
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            QBXML qbxml1 = (QBXML) unmarshaller.unmarshal(new StringReader("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n" +
+
+            QBXML qbxml1 = (QBXML) unmarshaller.unmarshal(new StringReader("<?xml version=\"1.0\" encoding=\"utf-8\"?><?qbxml version=\"7.0\"?>\n" +
                     "<QBXML>\n" +
-                    "    <QBXMLMsgRs onError=\"stopOnError\">\n" +
-                    "        <CustomerQueryRs statusCode=\"2\" statusSeverity=\"4\" statusMessage=\"3\">\n" +
-                    "            <CustomerRet>\n" +
-                    "                <listId>111</listId>\n" +
-                    "                <fullName>caiwen</fullName>\n" +
-                    "            </CustomerRet>\n" +
-                    "            <CustomerRet>\n" +
-                    "                <listId>222</listId>\n" +
-                    "                <fullName>caiwen2</fullName>\n" +
-                    "            </CustomerRet>\n" +
-                    "        </CustomerQueryRs>\n" +
-                    "    </QBXMLMsgRs>\n" +
+                    "<QBXMLMsgsRq onError=\"stopOnError\">\n" +
+                    "<CustomerQueryRq requestID=\"705a2b64-783a-4454-bc3b-9c98e8e89945\">\n" +
+                    "  <FromModifiedDate>2017-05-22T16:07:30+08:00</FromModifiedDate>\n" +
+                    "</CustomerQueryRq>\n" +
+                    "\n" +
+                    "</QBXMLMsgsRq>\n" +
                     "</QBXML>"));
 
-            System.out.println(qbxml1);
+            System.out.println(((CustomerQueryRq)(qbxml1.getQbxmlMsg().getQbXMLBusiMsg())).getFromModifiedDate());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }*/
     }
 }

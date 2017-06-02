@@ -3,8 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="webServiceClient" class="com.mic.test.cb.WebServiceClient">
-    </bean>
+    <bean class="com.mic.test.cb.qb.persist.config.JpaConfig"/>
+
     <bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="packagesToScan">
             <list>
@@ -18,5 +18,6 @@
         <constructor-arg ref="messageFactory"/>
         <property name="marshaller" ref="jaxb2Marshaller"/>
         <property name="unmarshaller" ref="jaxb2Marshaller"/>
+
     </bean>
 </beans>
