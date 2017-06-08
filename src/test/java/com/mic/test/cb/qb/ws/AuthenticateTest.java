@@ -9,6 +9,7 @@ import com.mic.test.cb.qb.persist.domain.cb.eum.ShipMethod;
 import com.mic.test.cb.qb.ws.domain.Authenticate;
 import com.mic.test.cb.qb.ws.domain.AuthenticateResponse;
 import com.mic.test.cb.qb.xml.domain.request.itemInventory.InventoryAdjustmentAddRq;
+import com.mic.test.cb.qb.xml.domain.request.salesOrder.SalesOrderModRq;
 import com.mic.test.cb.qb.xml.domain.request.salesOrder.ShipMethodAddRq;
 import com.mic.test.cb.qb.xml.domain.request.vendor.VendorAddRq;
 
@@ -146,19 +147,28 @@ public class AuthenticateTest extends BaseTest {
   }
 
   /*
-*  测试鉴权通过后生成《库存调整》任务
-*
-*
-* */
+  *  测试鉴权通过后生成《库存调整》任务
+  * */
   public void authPassAndInventoryAjustmentAddTask() throws JAXBException {
     List<QBWCTask> taskList = qbwcTaskJpaRepository.findByTicketAndStatusAndType(ticket, 0, 13);
     assertThat(taskList, hasSize(1));
     InventoryAdjustmentAddRq inventoryAdjustmentAddRq = unmarshall(taskList.get(0).getQbxmlReq(),
         InventoryAdjustmentAddRq.class);
 
-
   }
 
+
+  /*
+*  测试鉴权通过后生成《修改订单》任务
+* */
+  public void authPassAndSalesOrderModTask() throws JAXBException {
+    List<QBWCTask> taskList = qbwcTaskJpaRepository.findByTicketAndStatusAndType(ticket, 0, 11);
+    assertThat(taskList, hasSize(3));
+    SalesOrderModRq salesOrderModRq = unmarshall(taskList.get(0).getQbxmlReq(),
+        SalesOrderModRq.class);
+
+
+  }
 
   @Test
   public void testXpathAssert() throws Exception {
