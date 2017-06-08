@@ -3,7 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+  <bean class="com.mic.test.cb.qb.persist.config.AtomikosJtaConfiguration"/>
     <bean class="com.mic.test.cb.qb.persist.config.JpaConfig"/>
+  <bean class="com.mic.test.cb.qb.persist.config.CbJpaConfig"/>
 
     <bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="packagesToScan">
@@ -18,6 +20,5 @@
         <constructor-arg ref="messageFactory"/>
         <property name="marshaller" ref="jaxb2Marshaller"/>
         <property name="unmarshaller" ref="jaxb2Marshaller"/>
-
     </bean>
 </beans>

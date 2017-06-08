@@ -1,33 +1,53 @@
+
 package com.mic.test.cb.qb.ws.domain;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 
 /**
- * Created by caiwen on 2017/5/26.
+ * <p>anonymous complex type�� Java �ࡣ
+ *
+ * <p>����ģʽƬ��ָ�������ڴ����е�Ԥ�����ݡ�
+ *
+ * <pre>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="strUserName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="strPassword" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ *
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "authenticate")
-@XmlType(propOrder = {"strUserName", "strPassword"})
 public class Authenticate {
 
-    @XmlElement
-    private String strUserName;
-    @XmlElement
-    private String strPassword;
+  protected String strUserName;
+  protected String strPassword;
 
     public String getStrUserName() {
         return strUserName;
     }
 
-    public void setStrUserName(String strUserName) {
-        this.strUserName = strUserName;
+  public void setStrUserName(String value) {
+    this.strUserName = value;
     }
 
     public String getStrPassword() {
         return strPassword;
     }
 
-    public void setStrPassword(String strPassword) {
-        this.strPassword = strPassword;
+  public void setStrPassword(String value) {
+    this.strPassword = value;
     }
+
 }

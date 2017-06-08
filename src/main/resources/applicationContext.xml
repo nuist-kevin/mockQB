@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  xmlns:jaxws="http://cxf.apache.org/jaxws"
+  xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+">
+  <bean id="webserviceServer" class="com.mic.test.cb.qb.ws.endpoint.QbwcServer"/>
+  <!-- jax-ws endpoint定义 -->
+  <jaxws:endpoint id="myService" implementor="#webserviceServer" address="/qbwcServer">
+    <jaxws:features>
+      <bean class="org.apache.cxf.feature.LoggingFeature"/>
+    </jaxws:features>
+  </jaxws:endpoint>
 
+  <bean class="com.mic.test.cb.qb.persist.config.AtomikosJtaConfiguration"/>
     <bean class="com.mic.test.cb.qb.persist.config.JpaConfig"/>
+  <bean class="com.mic.test.cb.qb.persist.config.CbJpaConfig"/>
 
     <bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="packagesToScan">

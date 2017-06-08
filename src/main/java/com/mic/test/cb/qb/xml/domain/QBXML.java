@@ -19,11 +19,11 @@ public class QBXML {
     )
     private QBXMLMsgs qbxmlMsgs;
 
-    public QBXMLMsgs getQbxmlMsg() {
+  public QBXMLMsgs getQbxmlMsgs() {
         return qbxmlMsgs;
     }
 
-    public void setQbxmlMsg(QBXMLMsgs qbxmlMsg) {
-        this.qbxmlMsgs = qbxmlMsg;
+  public void setQbxmlMsgs(QBXMLMsgs qbxmlMsgs) {
+    this.qbxmlMsgs = qbxmlMsgs;
     }
 }

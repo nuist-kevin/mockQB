@@ -63,6 +63,9 @@ public class VendorRet {
     @XmlElement(name = "Email")
     private String email;
 
+  @XmlElement(name = "Cc")
+  private String ccEmail;
+
     @XmlElement(name = "Contact")
     private String contact;
 
@@ -196,6 +199,14 @@ public class VendorRet {
     public void setEmail(String email) {
         this.email = email;
     }
+
+  public String getCcEmail() {
+    return ccEmail;
+  }
+
+  public void setCcEmail(String ccEmail) {
+    this.ccEmail = ccEmail;
+  }
 
     public String getContact() {
         return contact;

@@ -7,9 +7,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by caiwen on 2017/6/1.
- */
 @XmlRootElement(name = "VendorQueryRq")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VendorAddRq extends ObjectMsg {

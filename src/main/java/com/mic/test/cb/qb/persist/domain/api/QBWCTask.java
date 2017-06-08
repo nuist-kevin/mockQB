@@ -1,4 +1,6 @@
-package com.mic.test.cb.qb.persist.domain;
+package com.mic.test.cb.qb.persist.domain.api;
+
+import com.mic.test.cb.qb.xml.domain.QBXML;
 
 import javax.persistence.*;
 import java.util.Date;

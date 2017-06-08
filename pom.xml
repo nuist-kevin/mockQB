@@ -6,8 +6,48 @@
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>mockQB Maven Webapp</name>
-  <url>http://ven.apache.org</url>
+
+  <properties>
+    <cxf.version>3.1.11</cxf.version>
+  </properties>
+
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/com.atomikos/transactions-jta -->
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>transactions-jta</artifactId>
+      <version>4.0.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Jetty is needed if you're are not using the CXFServlet -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http-jetty</artifactId>
+      <version>${cxf.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-jdk14</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-core -->
     <dependency>
       <groupId>org.springframework.ws</groupId>
@@ -40,22 +80,11 @@
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
       <version>1.11.3.RELEASE</version>
-      <!--<exclusions>-->
-      <!--<exclusion>-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>slf4j-api</artifactId>-->
-      <!--</exclusion>-->
-      <!--<exclusion>-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>jcl-over-slf4j</artifactId>-->
-      <!--</exclusion>-->
-      <!--</exclusions>-->
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>4.3.8.RELEASE</version>
-
     </dependency>
 
     <dependency>
@@ -68,6 +97,8 @@
       <artifactId>wsdl4j</artifactId>
       <version>1.6.2</version>
     </dependency>
+
+
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
@@ -97,6 +128,22 @@
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.6.1</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
@@ -119,6 +166,13 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>5.2.10.Final</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>

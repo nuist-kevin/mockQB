@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8">
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://java.sun.com/xml/ns/javaee"
@@ -6,14 +6,27 @@
         version="2.5">
 
     <display-name>Archetype Created Web Application</display-name>
-    <servlet>
-        <display-name>Apache-Axis Servlet</display-name>
-        <servlet-name>axis</servlet-name>
-        <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>CXFServlet</servlet-name>
+    <servlet-class>
+      org.apache.cxf.transport.servlet.CXFServlet
+    </servlet-class>
+    <load-on-startup>1</load-on-startup>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>axis</servlet-name>
+      <servlet-name>CXFServlet</servlet-name>
         <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
 </web-app>
