@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QBVendorJpaRepository extends JpaRepository<QBVendor, Integer> {
 
+  QBVendor findByQbVendorId(String qbVendorId);
 }

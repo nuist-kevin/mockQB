@@ -13,13 +13,9 @@ import com.mic.test.cb.qb.xml.domain.request.salesOrder.SalesOrderModRq;
 import com.mic.test.cb.qb.xml.domain.request.salesOrder.ShipMethodAddRq;
 import com.mic.test.cb.qb.xml.domain.request.vendor.VendorAddRq;
 
-
-import java.io.IOException;
-import javax.xml.parsers.ParserConfigurationException;
-import org.hamcrest.xml.HasXPath;
-import org.junit.Before;
-import org.junit.Test;
 import org.springframework.test.context.jdbc.Sql;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -55,7 +51,7 @@ public class AuthenticateTest extends BaseTest {
   private AuthenticateResponse authenticateResponse;
 
 
-  //    @Before
+  @BeforeMethod
   public void getTicket() {
     authenticate = new Authenticate();
     authenticate.setStrPassword(USERNAME);

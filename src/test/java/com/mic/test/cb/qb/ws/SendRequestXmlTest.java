@@ -6,8 +6,9 @@ import com.mic.test.cb.qb.ws.domain.SendRequestXMLResponse;
 import com.mic.test.cb.qb.xml.domain.QBXML;
 import com.mic.test.cb.qb.xml.domain.QBXMLBusiMsg;
 import java.util.List;
-import org.junit.Test;
 import org.springframework.test.context.jdbc.Sql;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.w3c.dom.Node;
 
 import static com.mic.test.cb.qb.utils.XmlUtil.getRootNodeFromXml;
@@ -21,8 +22,8 @@ public class SendRequestXmlTest extends BaseTest {
   SendRequestXML sendRequestXML;
   SendRequestXMLResponse sendRequestXMLResponse;
 
-  //    @Before
-  public void getTicket() {
+  @BeforeMethod
+  public void setRequestData() {
     sendRequestXML = new SendRequestXML();
     sendRequestXML.setTicket("");
     sendRequestXML.setQbXMLCountry("USA");
@@ -113,8 +114,8 @@ public class SendRequestXmlTest extends BaseTest {
   }
 
   /*  所有添加发货方式、添加货主、查询货主、查询货品、查询客户的任务为 1 的状态，其它任务为 0  的状态，
-*     则首先发送 查询订单  的请求
-* */
+  *     则首先发送 查询订单  的请求
+  * */
   @Test
   @Sql
   // TODO 插入QB同步任务信息

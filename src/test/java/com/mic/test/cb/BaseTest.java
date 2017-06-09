@@ -1,17 +1,15 @@
 package com.mic.test.cb;
 
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 /**
  * Created by caiwen on 2017/6/6.
  */
 @ContextConfiguration({"classpath:testApplicationContext.xml"})
-@RunWith(SpringJUnit4ClassRunner.class)
-public class BaseTest {
+public class BaseTest extends AbstractTestNGSpringContextTests {
 
   protected String WSDLLOCATION = "http://localhost:8080/services/qbwcServer?wsdl";
 

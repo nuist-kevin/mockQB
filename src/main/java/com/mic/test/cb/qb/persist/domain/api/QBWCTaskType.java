@@ -16,7 +16,9 @@ public enum QBWCTaskType {
 
     READ_SALES_ORDER(10, "SalesOrderQueryRs"), // 销售订单
     ADD_SALES_ORDER(11, "SalesOrderAddRs"), //
-    MODIFY_SALES_ORDER(12, "SalesOrderModRs")//
+    MODIFY_SALES_ORDER(12, "SalesOrderModRs"),//
+
+    ADD_SHIP_METHOD(13, "ShipMethodAddRq")
     ;
 
     private QBWCTaskType(int key, String resXMLTag) {
@@ -26,6 +28,7 @@ public enum QBWCTaskType {
 
     private int key;
     private String resXMLTag;
+
 
     public int getKey() {
         return key;

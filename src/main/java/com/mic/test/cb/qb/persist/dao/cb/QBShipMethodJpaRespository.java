@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QBShipMethodJpaRespository extends JpaRepository<QBShipMethod, Integer> {
 
+  QBShipMethod findByListId(String listId);
 }

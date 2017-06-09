@@ -14,4 +14,6 @@ public interface QBWCTaskJpaRepository extends JpaRepository<QBWCTask, Integer> 
   List<QBWCTask> findAllByTicketAndStatus(String ticket, Integer status);
 
   List<QBWCTask> findByTicketAndStatusAndType(String ticket, Integer status, Integer type);
+
+  QBWCTask findByRequestIdAndStatusAndType(String requestId, Integer status, Integer type);
 }
