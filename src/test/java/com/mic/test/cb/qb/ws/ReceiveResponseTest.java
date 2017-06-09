@@ -9,11 +9,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import com.mic.test.cb.BaseTest;
 import com.mic.test.cb.qb.persist.dao.api.QBWCTaskJpaRepository;
 import com.mic.test.cb.qb.persist.dao.cb.QBCustomerJpaRepository;
+import com.mic.test.cb.qb.persist.dao.cb.QBItemJpaRepository;
 import com.mic.test.cb.qb.persist.dao.cb.QBShipMethodJpaRespository;
 import com.mic.test.cb.qb.persist.dao.cb.QBVendorJpaRepository;
 import com.mic.test.cb.qb.persist.domain.api.QBWCTask;
 import com.mic.test.cb.qb.persist.domain.api.QBWCTaskType;
 import com.mic.test.cb.qb.persist.domain.cb.QBCustomer;
+import com.mic.test.cb.qb.persist.domain.cb.QBItem;
 import com.mic.test.cb.qb.persist.domain.cb.QBShipMethod;
 import com.mic.test.cb.qb.persist.domain.cb.QBVendor;
 import com.mic.test.cb.qb.ws.domain.ReceiveResponseXML;
@@ -21,6 +23,9 @@ import com.mic.test.cb.qb.ws.domain.ReceiveResponseXMLResponse;
 import com.mic.test.cb.qb.xml.domain.QBXML;
 import com.mic.test.cb.qb.xml.domain.response.customer.CustomerQueryRs;
 import com.mic.test.cb.qb.xml.domain.response.customer.CustomerRet;
+import com.mic.test.cb.qb.xml.domain.response.itemInventory.ItemInventoryAddRs;
+import com.mic.test.cb.qb.xml.domain.response.itemInventory.ItemInventoryQueryRs;
+import com.mic.test.cb.qb.xml.domain.response.itemInventory.ItemInventoryRet;
 import com.mic.test.cb.qb.xml.domain.response.salesOrder.ShipMethodAddRs;
 import com.mic.test.cb.qb.xml.domain.response.vendor.VendorAddRs;
 import javax.annotation.Resource;
@@ -31,6 +36,9 @@ public class ReceiveResponseTest extends BaseTest {
 
   @Resource
   QBVendorJpaRepository vendorJpaRepository;
+
+  @Resource
+  QBItemJpaRepository itemJpaRepository;
 
   @Resource
   QBCustomerJpaRepository customerJpaRepository;
@@ -69,7 +77,7 @@ public class ReceiveResponseTest extends BaseTest {
 
     // 检查任务状态是否为成功 2
     QBWCTask task = qbwcTaskJpaRepository.findByRequestIdAndStatusAndType(
-        customerQueryRs.getRequestId(), 2, 5);
+        customerQueryRs.getRequestId(), 2, QBWCTaskType.READ_CUSTOMER.getKey());
     assertThat(task, not(nullValue()));
 
     // 检查 CB 库中的listId 和 fullname 是否回填进去
@@ -81,10 +89,40 @@ public class ReceiveResponseTest extends BaseTest {
       assertThat(qbCustomer.getFullname(), equalTo(customerRet.getFullName()));
       assertThat(qbCustomer.getAddr1(), equalTo(customerRet.getShipAddress().getAddr1()));
     }
-
   }
 
+    /*  插入查询货品的任务信息数据 以及 cb 上QB item的数据
+  *   任务成功后更新QB item数据及任务信息
+  * */
 
+  public void testQueryItem(String responseXmlData, int resultNum) throws Exception {
+    QBXML sendXml = unmarshall(responseXmlData, QBXML.class);
+    receiveResponseXMLResponse = (ReceiveResponseXMLResponse) webServiceTemplate
+        .marshalSendAndReceive(WSDLLOCATION, sendXml);
+
+    // 检查返回码
+    assertThat(receiveResponseXMLResponse.getReceiveResponseXMLResult(), equalTo(resultNum));
+    ItemInventoryQueryRs itemInventoryQueryRs = (ItemInventoryQueryRs) sendXml.getQbxmlMsgs()
+        .getQbxmlBusiMsgList()
+        .get(0);
+
+    // 检查任务状态是否为成功 2
+    QBWCTask task = qbwcTaskJpaRepository.findByRequestIdAndStatusAndType(
+        itemInventoryQueryRs.getRequestId(), 2, QBWCTaskType.READ_ITEM_INVENTORY.getKey());
+    assertThat(task, not(nullValue()));
+
+    // 检查 CB 库中的listId 和 fullname 是否回填进去
+    for (ItemInventoryRet itemInventoryRet : itemInventoryQueryRs.getInventoryRetList()) {
+      QBItem qbItem = itemJpaRepository
+          .findByQbItemId(itemInventoryRet.getId());
+      assertThat(qbItem, not(nullValue()));
+      assertThat(qbItem.getBarCode(), equalTo(itemInventoryRet.getBarCodeValue()));
+      assertThat(qbItem.getManufacturerParNumber(),
+          equalTo(itemInventoryRet.getManufacturerPartNumber()));
+      assertThat(qbItem.getQbVendor().getQbVendorId(),
+          equalTo(itemInventoryRet.getPrefVendorRef().getListId()));
+    }
+  }
 
   /*  插入添加货主的任务信息数据 以及 cb 上开通货主的数据
   *   任务成功后更新货主数据及任务信息
