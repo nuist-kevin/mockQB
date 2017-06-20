@@ -1,6 +1,7 @@
 package com.mic.test.cb.qb.persist.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import java.util.Properties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -12,9 +13,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-/**
- * Created by caiwen on 2017/6/6.
- */
 @EnableTransactionManagement
 @Configuration
 @EnableJpaRepositories(
@@ -25,7 +23,7 @@ public class CbJpaConfig {
   @Bean
   public DataSource cbDataSource() {
     DruidDataSource dataSource = new DruidDataSource();
-    dataSource.setUrl("jdbc:oracle:thin:@192.168.17.104:1521:cbdev");
+    dataSource.setUrl("jdbc:oracle:thin:@192.168.17.104:1521:cbtest");
     dataSource.setUsername("cb");
     dataSource.setPassword("cb1234");
     return dataSource;
@@ -51,6 +49,10 @@ public class CbJpaConfig {
     localContainerEntityManagerFactoryBean.setJpaVendorAdapter(cbJpaVendorAdapter);
     localContainerEntityManagerFactoryBean
         .setPackagesToScan("com.mic.test.cb.qb.persist.domain.cb");
+    Properties properties = new Properties();
+    properties.put("hibernate.physical_naming_strategy",
+        "com.mic.test.cb.qb.persist.config.CustomNamingStrategy");
+    localContainerEntityManagerFactoryBean.setJpaProperties(properties);
     return localContainerEntityManagerFactoryBean;
   }
 }

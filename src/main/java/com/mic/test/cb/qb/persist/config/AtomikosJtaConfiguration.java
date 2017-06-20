@@ -10,9 +10,6 @@ import org.springframework.transaction.jta.JtaTransactionManager;
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 
-/**
- * Created by caiwen on 2017/6/6.
- */
 @Configuration
 public class AtomikosJtaConfiguration {
 

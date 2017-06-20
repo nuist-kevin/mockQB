@@ -3,6 +3,7 @@ package com.mic.test.cb.qb.ws.domain;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -26,30 +27,17 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "sendRequestXMLResult"
-})
 @XmlRootElement(name = "sendRequestXMLResponse")
 public class SendRequestXMLResponse {
 
-  private String sendRequestXMLResult;
+  @XmlElement(name = "sendRequestXMLReturn")
+  private String sendRequestXMLReturn;
 
-  /**
-   * ��ȡsendRequestXMLResult���Ե�ֵ��
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSendRequestXMLResult() {
-    return sendRequestXMLResult;
+  public String getSendRequestXMLReturn() {
+    return sendRequestXMLReturn;
   }
 
-  /**
-   * ����sendRequestXMLResult���Ե�ֵ��
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSendRequestXMLResult(String value) {
-    this.sendRequestXMLResult = value;
+  public void setSendRequestXMLReturn(String sendRequestXMLReturn) {
+    this.sendRequestXMLReturn = sendRequestXMLReturn;
   }
-
 }

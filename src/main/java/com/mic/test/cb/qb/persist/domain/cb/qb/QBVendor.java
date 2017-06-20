@@ -1,10 +1,8 @@
-package com.mic.test.cb.qb.persist.domain.cb;
+package com.mic.test.cb.qb.persist.domain.cb.qb;
 
+import com.mic.test.cb.qb.persist.domain.cb.BaseDomain;
 import javax.persistence.*;
 
-/**
- * Created by caiwen on 2017/6/6.
- */
 @Entity
 @Table(name = "WMS_QB_VENDOR")
 public class QBVendor extends BaseDomain {

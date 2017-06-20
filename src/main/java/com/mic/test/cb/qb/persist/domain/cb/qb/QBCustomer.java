@@ -1,5 +1,6 @@
-package com.mic.test.cb.qb.persist.domain.cb;
+package com.mic.test.cb.qb.persist.domain.cb.qb;
 
+import com.mic.test.cb.qb.persist.domain.cb.BaseDomain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -61,7 +62,7 @@ public class QBCustomer extends BaseDomain {
     return fullname;
   }
 
-  @Column(name = "company_name")
+  //  @Column(name = "company_name")
   public String getCompanyName() {
     return companyName;
   }

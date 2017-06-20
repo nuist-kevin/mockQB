@@ -1,4 +1,4 @@
-package com.mic.test.cb.qb.xml.domain.response.itemInventory;
+package com.mic.test.cb.qb.xml.domain.response.item;
 
 import com.mic.test.cb.qb.xml.domain.ObjectMsg;
 
@@ -10,9 +10,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Created by caiwen on 2017/6/2.
  */
-@XmlRootElement(name = "ItemInventoryAddRs")
+
+@XmlRootElement(name = "ItemInventoryModRs")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ItemInventoryAddRs extends ObjectMsg {
+public class ItemInventoryModRs extends ObjectMsg {
 
     @XmlElement(name = "ItemInventoryRet")
     private ItemInventoryRet itemInventoryRet;

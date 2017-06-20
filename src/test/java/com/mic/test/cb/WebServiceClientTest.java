@@ -62,9 +62,10 @@ public class WebServiceClientTest {
         AuthenticateResponse authicateResponse = (AuthenticateResponse) webServiceTemplate
                 .marshalSendAndReceive("http://localhost:8080/services/qbwcServer?wsdl",
                         authenticate);
-        String ticket = authicateResponse.getAuthenticateResult().getString().get(0);
+      String ticket = authicateResponse.getAuthenticateReturn().getAuthenticateReturn().get(0);
         Assert.assertNotNull(ticket);
-        Assert.assertEquals(authicateResponse.getAuthenticateResult().getString().get(1), "");
+      Assert.assertEquals(authicateResponse.getAuthenticateReturn().getAuthenticateReturn().get(1),
+          "");
         QBWCSession qbwcSession = qbwcSessionJpaRepository.findByTicket(ticket);
         Assert.assertNotNull(qbwcSession);
     }

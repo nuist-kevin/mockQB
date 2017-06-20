@@ -1,4 +1,4 @@
-package com.mic.test.cb.qb.xml.domain.request.itemInventory;
+package com.mic.test.cb.qb.xml.domain.request.item.inventoryAdjustment;
 
 import com.mic.test.cb.qb.xml.domain.ObjectMsg;
 

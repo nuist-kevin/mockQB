@@ -13,5 +13,4 @@ import java.util.Date;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class QBXMLMsgsRq extends QBXMLMsgs {
 
-
 }

@@ -1,5 +1,6 @@
-package com.mic.test.cb.qb.persist.domain.cb;
+package com.mic.test.cb.qb.persist.domain.cb.qb;
 
+import com.mic.test.cb.qb.persist.domain.cb.BaseDomain;
 import javax.persistence.*;
 import java.util.Date;
 

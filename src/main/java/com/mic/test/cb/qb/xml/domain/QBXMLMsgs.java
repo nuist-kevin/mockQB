@@ -3,6 +3,7 @@ package com.mic.test.cb.qb.xml.domain;
 import com.mic.test.cb.qb.xml.domain.request.QBXMLMsgsRq;
 import com.mic.test.cb.qb.xml.domain.request.custom.CustomerQueryRq;
 import com.mic.test.cb.qb.xml.domain.request.salesOrder.SalesOrderQueryRq;
+import com.mic.test.cb.qb.xml.domain.request.vendor.VendorAddRq;
 import com.mic.test.cb.qb.xml.domain.request.vendor.VendorQueryRq;
 import com.mic.test.cb.qb.xml.domain.response.QBXMLMsgsRs;
 import com.mic.test.cb.qb.xml.domain.response.customer.CustomerQueryRs;
@@ -10,10 +11,6 @@ import com.mic.test.cb.qb.xml.domain.response.vendor.VendorQueryRs;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
-
-/**
- * Created by caiwen on 2017/5/26.
- */
 
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlSeeAlso({QBXMLMsgsRs.class, QBXMLMsgsRq.class})
@@ -40,6 +37,9 @@ public abstract class QBXMLMsgs {
             @XmlElementRef(name = "CustomerQueryRq", type = CustomerQueryRq.class),
             @XmlElementRef(name = "VendorQueryRq", type = VendorQueryRq.class),
             @XmlElementRef(name = "SalesOrderQueryRq", type = SalesOrderQueryRq.class),
+        @XmlElementRef(name = "VendorAddRq", type = VendorAddRq.class)
+
+
     })
     private List<QBXMLBusiMsg> qbxmlBusiMsgList;
 

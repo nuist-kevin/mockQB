@@ -5,16 +5,12 @@ import com.mic.test.cb.qb.persist.dao.api.QBWCSessionJpaRepository;
 import com.mic.test.cb.qb.persist.dao.api.QBWCTaskJpaRepository;
 import com.mic.test.cb.qb.persist.domain.api.QBWCSession;
 import com.mic.test.cb.qb.persist.domain.api.QBWCTask;
-import com.mic.test.cb.qb.persist.domain.cb.QBVendor;
 import com.mic.test.cb.qb.ws.domain.Authenticate;
 import com.mic.test.cb.qb.ws.domain.AuthenticateResponse;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -40,10 +36,11 @@ public class VendorTest extends BaseTest {
     authenticate.setStrPassword("pass");
     AuthenticateResponse authicateResponse =
         (AuthenticateResponse) webServiceTemplate.marshalSendAndReceive(WSDLLOCATION, authenticate);
-    ticket = authicateResponse.getAuthenticateResult().getString().get(0);
+    ticket = authicateResponse.getAuthenticateReturn().getAuthenticateReturn().get(0);
     // 检查请求的响应
     Assert.assertNotNull(ticket);
-    Assert.assertEquals(authicateResponse.getAuthenticateResult().getString().get(1), "");
+    Assert
+        .assertEquals(authicateResponse.getAuthenticateReturn().getAuthenticateReturn().get(1), "");
 
     // 检查数据库数据
     // 检查session表

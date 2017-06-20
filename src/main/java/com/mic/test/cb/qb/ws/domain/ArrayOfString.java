@@ -29,12 +29,12 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ArrayOfString", propOrder = {
-    "string"
+    "authenticateReturn"
 })
 public class ArrayOfString {
 
-  @XmlElement(nillable = true)
-  protected List<String> string;
+  @XmlElement(nillable = true, name = "authenticateReturn")
+  protected List<String> authenticateReturn;
 
   /**
    * Gets the value of the string property.
@@ -56,14 +56,14 @@ public class ArrayOfString {
    * Objects of the following type(s) are allowed in the list
    * {@link String }
    */
-  public List<String> getString() {
-    if (string == null) {
-      string = new ArrayList<String>();
+  public List<String> getAuthenticateReturn() {
+    if (authenticateReturn == null) {
+      authenticateReturn = new ArrayList<String>();
     }
-    return this.string;
+    return this.authenticateReturn;
   }
 
-  public void setString(List<String> string) {
-    this.string = string;
+  public void setAuthenticateReturn(List<String> authenticateReturn) {
+    this.authenticateReturn = authenticateReturn;
   }
 }

@@ -1,4 +1,4 @@
-package com.mic.test.cb.qb.xml.domain.response.itemInventory;
+package com.mic.test.cb.qb.xml.domain.response.item.inventoryAdjustment;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

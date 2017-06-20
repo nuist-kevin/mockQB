@@ -7,10 +7,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by caiwen on 2017/6/2.
- */
-
 @XmlRootElement(name = "SalesOrderQueryRq")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SalesOrderQueryRq extends ObjectMsg {
@@ -20,6 +16,9 @@ public class SalesOrderQueryRq extends ObjectMsg {
 
     @XmlElement(name = "IncludeLineItems")
     private boolean includeLineItems;
+
+  @XmlElement(name = "IncludeRetElement")
+  private String includeRetElement;
 
     public DateRange getModifiedDateRangeFilter() {
         return modifiedDateRangeFilter;
@@ -36,4 +35,12 @@ public class SalesOrderQueryRq extends ObjectMsg {
     public void setIncludeLineItems(boolean includeLineItems) {
         this.includeLineItems = includeLineItems;
     }
+
+  public String getIncludeRetElement() {
+    return includeRetElement;
+  }
+
+  public void setIncludeRetElement(String includeRetElement) {
+    this.includeRetElement = includeRetElement;
+  }
 }

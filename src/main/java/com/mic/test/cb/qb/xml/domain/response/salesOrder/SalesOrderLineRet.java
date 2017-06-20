@@ -8,9 +8,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
-/**
- * Created by caiwen on 2017/6/2.
- */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SalesOrderLineRet {
@@ -21,6 +18,9 @@ public class SalesOrderLineRet {
     @XmlElement(name = "ItemRef")
     private QBRef itemRef;
 
+  @XmlElement(name = "Desc")
+  private String desc;
+
     @XmlElement(name = "Quantity")
     private BigDecimal quantity;
 
@@ -30,8 +30,8 @@ public class SalesOrderLineRet {
     @XmlElement(name = "UnitOfMeasure")
     private String unitOfMeasure;
 
-    @XmlElement(name = "Desc")
-    private String desc;
+  @XmlElement(name = "InventorySiteRef")
+  private QBRef inventorySiteRef;
 
     public String getTxnLineId() {
         return txnLineId;
@@ -80,4 +80,12 @@ public class SalesOrderLineRet {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+  public QBRef getInventorySiteRef() {
+    return inventorySiteRef;
+  }
+
+  public void setInventorySiteRef(QBRef inventorySiteRef) {
+    this.inventorySiteRef = inventorySiteRef;
+  }
 }

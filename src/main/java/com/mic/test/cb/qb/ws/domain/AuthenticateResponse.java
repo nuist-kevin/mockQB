@@ -3,6 +3,7 @@ package com.mic.test.cb.qb.ws.domain;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -26,19 +27,17 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "authenticateResult"
-})
 @XmlRootElement(name = "authenticateResponse")
 public class AuthenticateResponse {
 
-  protected ArrayOfString authenticateResult;
+  @XmlElement(name = "authenticateReturn")
+  protected ArrayOfString authenticateReturn;
 
-  public ArrayOfString getAuthenticateResult() {
-    return authenticateResult;
+  public ArrayOfString getAuthenticateReturn() {
+    return authenticateReturn;
   }
 
-  public void setAuthenticateResult(ArrayOfString authenticateResult) {
-    this.authenticateResult = authenticateResult;
+  public void setAuthenticateReturn(ArrayOfString authenticateReturn) {
+    this.authenticateReturn = authenticateReturn;
   }
 }

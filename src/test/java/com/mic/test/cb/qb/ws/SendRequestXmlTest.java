@@ -4,9 +4,9 @@ import com.mic.test.cb.BaseTest;
 import com.mic.test.cb.qb.ws.domain.SendRequestXML;
 import com.mic.test.cb.qb.ws.domain.SendRequestXMLResponse;
 import com.mic.test.cb.qb.xml.domain.QBXML;
-import com.mic.test.cb.qb.xml.domain.QBXMLBusiMsg;
-import java.util.List;
+
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
@@ -25,12 +25,13 @@ public class SendRequestXmlTest extends BaseTest {
   @BeforeMethod
   public void setRequestData() {
     sendRequestXML = new SendRequestXML();
-    sendRequestXML.setTicket("");
+    sendRequestXML.setTicket("cb6bf029-897f-473f-b4a1-1dd065ac2bfc");
     sendRequestXML.setQbXMLCountry("USA");
     sendRequestXML.setQbXMLMajorVers(0);
     sendRequestXML.setQbXMLMinorVers(0);
     sendRequestXML.setStrHCPResponse("HCP");
-    sendRequestXML.setStrCompanyFileName("");
+    sendRequestXML.setStrCompanyFileName(
+        "C:\\Users\\Public\\Documents\\Intuit\\QuickBooks\\Company Files\\InqBrands.qbw");
   }
 
   /*  所有任务都为 0 的状态，则首先发送添加发货方式的请求
@@ -41,27 +42,23 @@ public class SendRequestXmlTest extends BaseTest {
   @Sql
   // TODO 插入QB同步任务信息
 
+  @Transactional
   public void testGetAddShipMethodReq() throws Exception {
     String qbxml = getQbxml();
     Node root = getRootNodeFromXml(qbxml);
 
-    assertThat(root, hasXPath("/QBXML/QBXMLMsgsRq/ShipMethodAddRq[3]/ShipMethodAdd"));
+    assertThat(root, hasXPath("/QBXML/QBXMLMsgsRq/ShipMethodAddRq[17]/ShipMethodAdd"));
 
   }
 
   /*  所有添加发货方式任务为 1 的状态，其它任务为 0  的状态，则首先发送添加货主的请求
-*
-*
-* */
+   * */
   @Test
-  @Sql
-  // TODO 插入QB同步任务信息
-
+  @Sql   // TODO 插入QB同步任务信息
   public void testGetAddVendorReq() throws Exception {
     String qbxml = getQbxml();
     Node root = getRootNodeFromXml(qbxml);
-    assertThat(root, hasXPath("/QBXML/QBXMLMsgsRq/VendorAddRq[3]/VendorAdd"));
-
+    assertThat(root, hasXPath("/QBXML/QBXMLMsgsRq/VendorAddRq[4]/VendorAdd"));
   }
 
   /*  所有添加发货方式、添加货主的任务为 1 的状态，其它任务为 0  的状态，则首先发送查询货主货主的请求
@@ -163,8 +160,8 @@ public class SendRequestXmlTest extends BaseTest {
   private String getQbxml() throws javax.xml.bind.JAXBException {
     sendRequestXMLResponse = (SendRequestXMLResponse) webServiceTemplate
         .marshalSendAndReceive(WSDLLOCATION, sendRequestXML);
-    String sendRequestXMLResult = sendRequestXMLResponse.getSendRequestXMLResult();
-    return sendRequestXMLResult;
+    String sendRequestXMLReturn = sendRequestXMLResponse.getSendRequestXMLReturn();
+    return sendRequestXMLReturn;
   }
 
 

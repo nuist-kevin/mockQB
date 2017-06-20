@@ -1,4 +1,4 @@
-package com.mic.test.cb.qb.xml.domain.response.itemInventory;
+package com.mic.test.cb.qb.xml.domain.response.item.inventoryAdjustment;
 
 import com.mic.test.cb.qb.xml.domain.common.QBRef;
 
@@ -8,9 +8,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
-/**
- * Created by caiwen on 2017/6/8.
- */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class InventoryAdjustmentLineRet {

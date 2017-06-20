@@ -2,6 +2,7 @@ package com.mic.test.cb.qb.ws.endpoint;
 
 import com.mic.test.cb.qb.ws.domain.ArrayOfString;
 
+import com.mic.test.cb.qb.xml.domain.QBXML;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.ws.Endpoint;
@@ -22,7 +23,20 @@ public class QbwcServer implements IQbwcServer {
   public String sendRequestXML(String ticket, String strHCPResponse,
       String strCompanyFileName, String qbXMLCountry,
       int qbXMLMajorVers, int qbXMLMinorVers) {
-    return null;
+    System.out.println("ticket: " + ticket);
+    System.out.println("strHCPResponse: " + strHCPResponse);
+    System.out.println("qbXMLCountry: " + qbXMLCountry);
+    System.out.println("qbXMLMajorVers: " + qbXMLMajorVers);
+    System.out.println("qbXMLMinorVers: " + qbXMLMinorVers);
+
+    return
+        "<?xml version=\"1.0\" encoding=\"utf-8\"?><?qbxml version=\"13.0\"?><QBXML><QBXMLMsgsRq onError=\"stopOnError\">\n"
+            + "<SalesOrderQueryRq requestID=\"4ba4bf5d-6192-4ca9-9943-f102bde9209d\">\n"
+            + "  <ModifiedDateRangeFilter>\n"
+            + "    <FromModifiedDate>2017-06-15T16:03:06+08:00</FromModifiedDate>\n"
+            + "  </ModifiedDateRangeFilter>\n"
+            + "  <IncludeLineItems>true</IncludeLineItems>\n"
+            + "</SalesOrderQueryRq>";
   }
 
   @Override
@@ -41,13 +55,13 @@ public class QbwcServer implements IQbwcServer {
     List<String> results = new ArrayList<>();
     results.add("143251sdfg45345");
     results.add("");
-    arrayOfString.setString(results);
+    arrayOfString.setAuthenticateReturn(results);
     return arrayOfString;
   }
 
   @Override
   public int receiveResponseXML(String ticket, String response, String hresult, String message) {
-    return 0;
+    return 50;
   }
 
   @Override

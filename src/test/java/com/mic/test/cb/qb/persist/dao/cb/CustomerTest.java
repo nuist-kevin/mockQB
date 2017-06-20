@@ -1,29 +1,23 @@
 package com.mic.test.cb.qb.persist.dao.cb;
 
 import com.mic.test.cb.BaseTest;
-import com.mic.test.cb.qb.persist.domain.cb.QBCustomer;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.mic.test.cb.qb.persist.domain.cb.qb.QBCustomer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
-
-/**
- * Created by caiwen on 2017/6/6.
- */
-
+import org.testng.annotations.Test;
 
 public class CustomerTest extends BaseTest {
 
-  @Resource
+  @Autowired
   QBCustomerJpaRepository qbCustomerJpaRepository;
 
   @Test
   @Transactional
   public void testfindOne() {
-    QBCustomer qbCustomer = qbCustomerJpaRepository.findOne(2221);
+    QBCustomer qbCustomer = qbCustomerJpaRepository.findOne(202);
     System.out.println(qbCustomer.getAddName());
+    System.out.println(qbCustomer.getAddTime().getMonth());
   }
 }
